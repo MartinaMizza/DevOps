@@ -6,7 +6,7 @@ on:
       - deploy
 
 jobs:
-  files-up-to-date:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
