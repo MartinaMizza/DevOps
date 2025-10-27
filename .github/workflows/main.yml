@@ -21,12 +21,19 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: '9.14.2'
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
   
       - name: Build
-        run: npm run build
+        run: pnpm run build
         
   
     
